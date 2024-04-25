@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Super_user extends CI_Controller
 {
+     public function __construct()
+     {
+          parent::__construct();
+          check_login();
+     }
      public function index()
      {
           //mengatasi error sesi habis
@@ -69,7 +74,7 @@ class Super_user extends CI_Controller
                     'image' => 'default.jpg',
                     'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                     'role' => $this->input->post('role', true),
-                    'is_active' => $this->input->post('is_active', true),
+                    'is_active' => $this->input->post('is_active', true) == null ? 0 : 1,
                     'date_create' => time(),
                ];
 
@@ -79,7 +84,45 @@ class Super_user extends CI_Controller
           }
      }
 
-     public function delete_user()
+     public function hapus_user()
      {
+          $id_user = $this->input->post('idUser', true);
+          $this->db->where('id', $id_user);
+          $this->db->delete('user');
+
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun berhasil dihapus!</div>');
+          redirect('super_user/manajemen_user');
+     }
+
+     public function reset_password()
+     {
+          $id_user = $this->input->post('idResetPassword', true);
+          $email = $this->input->post('emailResetPassword', true);
+          $data = [
+               'password' => password_hash($this->input->post('resetPassword'), PASSWORD_DEFAULT),
+          ];
+
+          $this->db->where('id', $id_user);
+          $this->db->update('user', $data);
+
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Akun ' . $email . ' berhasil direset!</div>');
+          redirect('super_user/manajemen_user');
+     }
+
+     public function update_user()
+     {
+          $id_user = $this->input->post('idUpdateUser', true);
+          $email = $this->input->post('emailUpdateUser', true);
+          $data = [
+               'name' => $this->input->post('updateName', true),
+               'role' => $this->input->post('updateRole', true),
+               'is_active' => $this->input->post('updateActive', true) == null ? 0 : 1,
+          ];
+
+          $this->db->where('id', $id_user);
+          $this->db->update('user', $data);
+
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun ' . $email . ' berhasil diupdate!</div>');
+          redirect('super_user/manajemen_user');
      }
 }
