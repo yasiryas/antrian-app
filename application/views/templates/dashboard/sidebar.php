@@ -2,7 +2,7 @@
          <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
               <!-- Sidebar - Brand -->
-              <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+              <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url($user['role']); ?>">
                    <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-signature"></i>
                    </div>
@@ -139,7 +139,7 @@
 
               <!-- Nav Item - Profile -->
               <li class="nav-item <?= $title == "My Profile" ? "active" : ""; ?>">
-                   <a class="nav-link" href="tables.html">
+                   <a class="nav-link" href="<?= base_url('user/myprofile'); ?>">
                         <i class="fas fa-fw fa-table"></i>
                         <span>My Profile</span></a>
               </li>
