@@ -4,9 +4,9 @@
               <!-- Sidebar - Brand -->
               <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url($user['role']); ?>">
                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-signature"></i>
+                        <i class="fas fa-layer-group"></i>
                    </div>
-                   <div class="sidebar-brand-text mx-3">Dash CI <sup>3</sup></div>
+                   <div class="sidebar-brand-text mx-3">Antrian<sup>App</sup></div>
               </a>
 
               <!-- Divider -->
