@@ -9,13 +9,30 @@ class Display extends CI_Controller
           // check_login();
      }
 
-     public function index()
+     public function display()
      {
           $data['title'] = 'Display Queue';
-          // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
           $this->load->view('templates/display/display_header', $data);
-          $this->load->view('display/index', $data);
+          $this->load->view('display/display', $data);
+          $this->load->view('templates/display/display_footer');
+     }
+
+     public function print_ticket()
+     {
+          $data['title'] = 'Print Ticket';
+
+          $this->load->view('templates/display/display_header', $data);
+          $this->load->view('display/print_ticket', $data);
+          $this->load->view('templates/display/display_footer');
+     }
+
+     public function counter()
+     {
+          $data['title'] = 'Print Ticket';
+
+          $this->load->view('templates/display/display_header', $data);
+          $this->load->view('display/counter', $data);
           $this->load->view('templates/display/display_footer');
      }
 }
